@@ -1,5 +1,9 @@
-{% extends 'base.html' %}{%block content%}
+{% extends 'base.html' %}
+{%block content%}
+{{block.super}}
+
 <div class="container-fluid">
+      
   <h1 class="title">popular movies</h1>
   <div class="carousel js-carousel">
     <div class="carousel__container js-carousel-container">
@@ -27,6 +31,7 @@
         {% endfor %}
       </div>
     </div>
+    
     <div class="carousel__nav">
       <button class="carousel__button--prev js-carousel-button" data-dir="prev">&lt;</button>
       <button class="carousel__button--next js-carousel-button" data-dir="next">&gt;</button>

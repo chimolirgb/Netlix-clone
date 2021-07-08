@@ -1,5 +1,7 @@
+{%extends 'base.html'%} 
+{% load bootstrap4 %}
 {%block content%}
-<a href="/"><div class="logo"></div></a>
+
 
 <div id="wrapper">
   <div class="relative">
@@ -25,9 +27,19 @@
       </div>
     </div>
   </div>
+  <!-- Looping through news end   -->
+<div class="container-fluid">
+
+    <form  action="{%url 'movies'%}" method="post">
+      {%csrf_token%}
+  
+      {% bootstrap_form letterForm layout='inline' %}
+      <input type="submit" value="Subscribe">
+    </form>
+  
 
 </div>
-</div>
+
 
 {% endblock%} {% block head%}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy|Monoton|Cabin+Sketch|Concert+One|Arima+Madurai|Cabin">{%endblock %} {% block styles %}

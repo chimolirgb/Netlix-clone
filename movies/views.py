@@ -5,7 +5,7 @@ import json
 from time import mktime
 import tmdbsimple as tmdb
 from googleapiclient.discovery import build
-#from .forms import NetflixForm
+from .forms import NewsLetterForm
 
 
 # Create your views here.
@@ -36,7 +36,11 @@ def single_movie(request, movie_id):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(q=movie_name, part='id,snippet', maxResults=1).execute()
     for search_result in search_response.get('items', []):
-        if search_result['id']['kind'] == 'youtube#video':
-            video_id = search_result['id']['videoId']
+       if request.method == 'POST':
+        form = NewsLetterForm(request.POST)
+        if form.is_valid():
+            print('valid')
+    else:
+        form = NewsLetterForm() 
 
-    return render(request, 'single_movie.html', {'movies':movies, 'year':year, 'videoId':video_id})
+    return render(request, 'single_movie.html', {'movies':movies, 'year':year,"letterForm":form })
